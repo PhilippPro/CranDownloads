@@ -2,7 +2,7 @@ library(cranlogs)
 library(data.table)
 
 packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger")
-dates = seq(as.Date("2016/7/1"), as.Date("2018/1/8"), by = "day")
+dates = seq(as.Date("2016/7/1"), as.Date("2018/3/21"), by = "day")
 
 downloads_all = matrix(NA, length(dates)-27, length(packages))
 
@@ -33,4 +33,6 @@ plot(dates[28:length(dates)], downloads_all[,8], type = "l", col = "blue", ylab 
 lines(dates[28:length(dates)], downloads_all[,9], col = "red")
 lines(dates[28:length(dates)], downloads_all[,4], col = "violet")
 
+plot(dates[28:length(dates)], downloads_all[,10], type = "l", col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
 plot(dates[28:length(dates)], downloads_all[,11], type = "l", col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
+plot(dates[28:length(dates)], downloads_all[,12], type = "l", col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
