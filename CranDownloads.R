@@ -1,8 +1,9 @@
 library(cranlogs)
 library(data.table)
 
-packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "keras", "e1071", "kernlab", "liquidSVM")
-dates = seq(as.Date("2016/7/1"), as.Date("2018/9/20"), by = "day")
+packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "keras", 
+  "randomForest", "xgboost", "randomForestSRC", "ranger", "Rborist", "e1071", "kernlab", "liquidSVM")
+dates = seq(as.Date("2016/7/1"), as.Date("2018/9/26"), by = "day")
 
 downloads_all = matrix(NA, length(dates)-27, length(packages))
 
@@ -45,6 +46,13 @@ lines(dates[28:length(dates)], downloads_all[,"rBayesianOptimization"], col = "r
 
 plot(dates[28:length(dates)], downloads_all[,"keras"], type = "l", col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
 #lines(dates[28:length(dates)], downloads_all[,"mxnet"], col = "red")
+
+plot(dates[28:length(dates)], downloads_all[,"randomForest"], type = "l", col = "black", ylab = "Number of downloads in the last month", xlab = "data", ylim = c(0, max(downloads_all[,"randomForest"]))) #,ylim = range(downloads_all))
+#plot(dates[28:length(dates)], downloads_all[,"xgboost"], col = "blue", type = "l", ylim = c(0, max(downloads_all[,"xgboost"])))
+lines(dates[28:length(dates)], downloads_all[,"ranger"], col = "red")
+lines(dates[28:length(dates)], downloads_all[,"randomForestSRC"], col = "orange")
+lines(dates[28:length(dates)], downloads_all[,"Rborist"], col = "violet")
+lines(dates[28:length(dates)], downloads_all[,"xgboost"], col = "blue")
 
 plot(dates[28:length(dates)], downloads_all[,"e1071"], type = "l", col = "black", ylab = "Number of downloads in the last month", xlab = "data", ylim = c(0, max(downloads_all[,"e1071"]))) #,ylim = range(downloads_all))
 lines(dates[28:length(dates)], downloads_all[,"kernlab"], col = "red")
