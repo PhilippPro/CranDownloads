@@ -3,7 +3,7 @@ library(data.table)
 
 packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "keras", 
   "randomForest", "xgboost", "randomForestSRC", "ranger", "Rborist", "e1071", "kernlab", "liquidSVM", "kknn", "RWeka")
-dates = seq(as.Date("2016/7/1"), as.Date("2019/1/13"), by = "day")
+dates = seq(as.Date("2016/7/1"), as.Date("2019/7/2"), by = "day")
 
 downloads_all = matrix(NA, length(dates)-27, length(packages))
 
@@ -58,6 +58,7 @@ plot(dates[28:length(dates)], downloads_all[,"e1071"], type = "l", col = "black"
 lines(dates[28:length(dates)], downloads_all[,"kernlab"], col = "red")
 lines(dates[28:length(dates)], downloads_all[,"liquidSVM"], col = "blue")
 # make some advertisement
+plot(dates[28:length(dates)], downloads_all[,"liquidSVM"], type = "l", col = "black", ylab = "Number of downloads in the last month", xlab = "data", ylim = c(0, max(downloads_all[,"liquidSVM"]))) #,ylim = range(downloads_all))
 
 plot(dates[28:length(dates)], downloads_all[,"kknn"], type = "l", col = "black", ylab = "Number of downloads in the last month", xlab = "data", ylim = c(0, max(downloads_all[,"RWeka"]))) #,ylim = range(downloads_all))
 lines(dates[28:length(dates)], downloads_all[,"RWeka"], col = "red")
