@@ -3,7 +3,7 @@ library(data.table)
 
 packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "keras", 
   "randomForest", "xgboost", "randomForestSRC", "ranger", "Rborist", "e1071", "kernlab", "liquidSVM", "kknn", "RWeka")
-dates = seq(as.Date("2016/7/1"), as.Date("2019/10/15"), by = "day")
+dates = seq(as.Date("2016/7/1"), as.Date("2020/2/26"), by = "day")
 
 downloads_all = matrix(NA, length(dates)-27, length(packages))
 
