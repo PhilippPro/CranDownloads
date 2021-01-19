@@ -1,9 +1,9 @@
 library(cranlogs)
 library(data.table)
 
-packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "keras", 
-  "randomForest", "xgboost", "randomForestSRC", "ranger", "Rborist", "e1071", "kernlab", "liquidSVM", "kknn", "RWeka")
-dates = seq(as.Date("2016/7/1"), as.Date("2020/2/26"), by = "day")
+packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "measures", "keras", 
+  "randomForest", "xgboost", "randomForestSRC", "ranger", "Rborist", "e1071", "kernlab", "liquidSVM", "kknn", "RWeka", "ordinalForest", "bapred", "diversityForest", "blockForest")
+dates = seq(as.Date("2016/7/1"), as.Date("2021/1/19"), by = "day")
 
 downloads_all = matrix(NA, length(dates)-27, length(packages))
 
@@ -19,8 +19,8 @@ colnames(downloads_all) = packages
 
 pdf("cran_downloads.pdf")
 par(mfrow = c(1,1))
-plot(dates[28:length(dates)], downloads_all[,1], type = "l", col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
-lines(dates[28:length(dates)], downloads_all[,2]/15, col = "red")
+plot(dates[28:length(dates)], downloads_all[,1], type = "l", ylim = c(0,30000), col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
+lines(dates[28:length(dates)], downloads_all[,2]/10, col = "red")
 legend("topleft", c("mlr", "caret (divided by 15)"), col = c("blue", "red"), lty = 1)
 abline(v = as.Date("2016-08-03"))
 abline(v = as.Date("2016-08-08"))
@@ -39,7 +39,8 @@ lines(dates[28:length(dates)], downloads_all[,"quantregRanger"], col = "red")
 lines(dates[28:length(dates)], downloads_all[,"tscount"], col = "violet")
 lines(dates[28:length(dates)], downloads_all[,"tuneRanger"], col = "green")
 lines(dates[28:length(dates)], downloads_all[,"varImp"], col = "black")
-legend("topleft", c("OOBCurve", "quantregRanger", "tscount", "tuneRanger", "varImp"),lty =1, col = c("blue", "red", "violet", "green", "black"))
+lines(dates[28:length(dates)], downloads_all[,"measures"], col = "orange")
+legend("topleft", c("OOBCurve", "quantregRanger", "tscount", "tuneRanger", "varImp", "measures"),lty =1, col = c("blue", "red", "violet", "green", "black", "orange"))
 #lines(dates[28:length(dates)], downloads_all[,"liquidSVM"], col = "orange")
 
 plot(dates[28:length(dates)], downloads_all[,"mlrMBO"], type = "l", col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
@@ -65,3 +66,12 @@ plot(dates[28:length(dates)], downloads_all[,"liquidSVM"], type = "l", col = "bl
 
 plot(dates[28:length(dates)], downloads_all[,"kknn"], type = "l", col = "black", ylab = "Number of downloads in the last month", xlab = "data", ylim = c(0, max(downloads_all[,"RWeka"]))) #,ylim = range(downloads_all))
 lines(dates[28:length(dates)], downloads_all[,"RWeka"], col = "red")
+
+# Roman
+plot(dates[28:length(dates)], downloads_all[,"ordinalForest"], type = "l", col = "black", ylab = "Number of downloads in the last month", xlab = "data", ylim = c(0, max(downloads_all[,"ordinalForest"]))) #,ylim = range(downloads_all))
+#plot(dates[28:length(dates)], downloads_all[,"xgboost"], col = "blue", type = "l", ylim = c(0, max(downloads_all[,"xgboost"])))
+lines(dates[28:length(dates)], downloads_all[,"bapred"], col = "red")
+lines(dates[28:length(dates)], downloads_all[,"diversityForest"], col = "orange")
+lines(dates[28:length(dates)], downloads_all[,"blockForest"], col = "violet")
+legend("topleft", c("ordinalForest", "bapred", "diversityForest", "blockForest"),lty =1, col = c("black", "red", "orange", "violet"))
+
