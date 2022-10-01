@@ -1,9 +1,9 @@
 library(cranlogs)
 library(data.table)
 
-packages = c("mlr", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "measures", "keras", 
+packages = c("mlr", "mlr3", "caret", "radiant", "tscount", "ggplot2", "data.table", "rattle", "OOBCurve", "quantregRanger", "mlrMBO", "rBayesianOptimization", "tuneRanger", "varImp", "measures", "keras", 
   "randomForest", "xgboost", "randomForestSRC", "ranger", "Rborist", "e1071", "kernlab", "liquidSVM", "kknn", "RWeka", "ordinalForest", "bapred", "diversityForest", "blockForest")
-dates = seq(as.Date("2016/7/1"), as.Date("2021/10/5"), by = "day")
+dates = seq(as.Date("2016/7/1"), as.Date("2022/10/1"), by = "day")
 
 downloads_all = matrix(NA, length(dates)-27, length(packages))
 
@@ -19,8 +19,9 @@ colnames(downloads_all) = packages
 
 pdf("cran_downloads.pdf")
 par(mfrow = c(1,1))
-plot(dates[28:length(dates)], downloads_all[,1], type = "l", ylim = c(0,50000), col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
-lines(dates[28:length(dates)], downloads_all[,2]/5, col = "red")
+plot(dates[28:length(dates)], downloads_all[,1], type = "l", ylim = c(0,70000), col = "blue", ylab = "Number of downloads in the last month", xlab = "data") #,ylim = range(downloads_all))
+lines(dates[28:length(dates)], downloads_all[,2], col = "green")
+lines(dates[28:length(dates)], downloads_all[,3]/5, col = "red")
 legend("topleft", c("mlr", "caret (divided by 5)"), col = c("blue", "red"), lty = 1)
 abline(v = as.Date("2016-08-03"))
 abline(v = as.Date("2016-08-08"))
